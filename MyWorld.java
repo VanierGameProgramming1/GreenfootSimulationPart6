@@ -159,5 +159,7 @@ public class MyWorld extends SimulationWorld
             BrickPlatform bp = new BrickPlatform();
             addObject(bp, i, 624);
         }
+        CannonBall cannonBall = new CannonBall();
+        addObject(cannonBall,63,464);
     }
 }
