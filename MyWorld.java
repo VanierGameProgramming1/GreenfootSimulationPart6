@@ -143,7 +143,6 @@ public class MyWorld extends SimulationWorld
     
     private void prepare()
     {
-/*        
         // Create the ground floor
         for (int i=16; i < 10240; i += 32)
         {
@@ -160,6 +159,5 @@ public class MyWorld extends SimulationWorld
             BrickPlatform bp = new BrickPlatform();
             addObject(bp, i, 624);
         }
-*/
     }
 }
