@@ -161,5 +161,8 @@ public class MyWorld extends SimulationWorld
         }
         CannonBall cannonBall = new CannonBall();
         addObject(cannonBall,63,464);
+        removeObject(cannonBall);
+        CannonBallAvatar cannonBallAvatar = new CannonBallAvatar();
+        addObject(cannonBallAvatar,94,399);
     }
 }
