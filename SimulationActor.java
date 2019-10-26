@@ -44,12 +44,11 @@ public class SimulationActor extends Actor
     
     protected void eulerIntegration()
     {
-        // Initial position
+        // This is for scaling the sprites later on, somehow, greenfoot draw sprites with scale
         if (originalImage == null && getImage() != null)
         {
             saveOriginalImage();
         }
-
         
         // Get time step duration
         double dt = getSimulationWorld().getTimeStepDuration();

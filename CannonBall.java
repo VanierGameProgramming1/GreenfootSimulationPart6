@@ -52,7 +52,6 @@ public class CannonBall extends SimulationActor
         if (onPlatform == true)
         {
             double circumference = 2 * Math.PI * getRadius();
-            double dt = getSimulationWorld().getTimeStepDuration();
             double dx = worldToWindow(position.getX() - lastPosition.getX());
             double angleVariation = dx * 360 / circumference;
             

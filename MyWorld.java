@@ -21,7 +21,7 @@ public class MyWorld extends SimulationWorld
     public void act()
     {
         super.act();
-        moveCamera();
+//        moveCamera();
         handleCannonBallCollisions();
 //        reflectCannonBallsOnWindow();
     }
@@ -146,13 +146,14 @@ public class MyWorld extends SimulationWorld
         // Create the ground floor
         for (int i=16; i < 10240; i += 32)
         {
-        GroundPlatform gp = new GroundPlatform();
-        addObject(gp, i, 752);
+            GroundPlatform gp = new GroundPlatform();
+            addObject(gp, i, 752);
         }
 
         // Add a few brick platforms
         for (int i=16; i < 10240; i += 32)
         {
+            // Gap between platforms
             if (i % 336 == 0)
                 i += 320;
     
