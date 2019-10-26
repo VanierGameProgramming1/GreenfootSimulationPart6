@@ -100,5 +100,14 @@ public class SimulationWorld extends World
         return DEFAULT_CAMERA_WIDTH / cameraWidth;
     }
     
-
+    public void addObject(Actor a, int x, int y)
+    {
+        super.addObject(a,x,y);
+        
+        if (a instanceof SimulationActor)
+        {
+            SimulationActor sa = (SimulationActor) a;
+            sa.setPosition(windowToWorld(new Point2D(x, y)));
+        }            
+    }
 }

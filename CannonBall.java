@@ -9,15 +9,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class CannonBall extends SimulationActor
 {
     protected static final double GRAVITY = -9.8;
-    protected boolean onPlatform;
-    protected int lastPositionX;
-    
+    protected boolean onPlatform;    
+    protected Point2D lastPosition;
     
     public CannonBall()
     {
         super(null, new Vector2D(0.0, 0.0), new Vector2D(0.0, GRAVITY));
         onPlatform = false;
-        lastPositionX = 0;
+        lastPosition = position;
     }
     
     public void act() 
@@ -53,14 +52,14 @@ public class CannonBall extends SimulationActor
         if (onPlatform == true)
         {
             double circumference = 2 * Math.PI * getRadius();
-            int dx = getX() - lastPositionX;
+            double dt = getSimulationWorld().getTimeStepDuration();
+            double dx = worldToWindow(position.getX() - lastPosition.getX());
             double angleVariation = dx * 360 / circumference;
             
             setRotation(getRotation() + (int) angleVariation);
         }
         
-        // Prepare the last position X for the next time step
-        lastPositionX = getX();
+        lastPosition = new Point2D(position);
     }
     
 }

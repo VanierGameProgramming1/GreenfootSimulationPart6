@@ -45,11 +45,6 @@ public class SimulationActor extends Actor
     protected void eulerIntegration()
     {
         // Initial position
-        if (position == null)
-        {
-            position = windowToWorld(new Point2D(getX(), getY()));
-        }
-        
         if (originalImage == null && getImage() != null)
         {
             saveOriginalImage();
@@ -59,13 +54,13 @@ public class SimulationActor extends Actor
         // Get time step duration
         double dt = getSimulationWorld().getTimeStepDuration();
         
-        // Update velocity
-        Vector2D velocityVariation = Vector2D.multiply(acceleration, dt);
-        velocity = Vector2D.add(velocity, velocityVariation);
-
         // Update position
         Vector2D positionVariation = Vector2D.multiply(velocity, dt);
         position.add(positionVariation);
+        
+        // Update velocity
+        Vector2D velocityVariation = Vector2D.multiply(acceleration, dt);
+        velocity = Vector2D.add(velocity, velocityVariation);
         
         // Set new actor position
         setLocation(position);
@@ -116,6 +111,7 @@ public class SimulationActor extends Actor
     public void setPosition(Point2D newValue)
     {
         position = newValue;
+        setLocation(position);
     }
     
     public void setVelocity(Vector2D newValue)
@@ -128,21 +124,17 @@ public class SimulationActor extends Actor
         acceleration = newValue;
     }
 
-    public void setLocation(int x, int y)
-    {
-        super.setLocation(x, y);
-        
-        Point2D newPosition = new Point2D(x, y);
-        setPosition(windowToWorld(newPosition));
-        
-    }
-    
     public void setLocation(Point2D worldLocation)
     {
         Point2D windowLocation = worldToWindow(worldLocation);
         setLocation((int) windowLocation.getX(), (int) windowLocation.getY());
     }
     
+    protected double worldToWindow(double windowCoordinates)
+    {        
+        return getSimulationWorld().worldToWindow(windowCoordinates);
+    }
+
     protected Point2D worldToWindow(Point2D windowCoordinates)
     {        
         return getSimulationWorld().worldToWindow(windowCoordinates);
@@ -153,6 +145,11 @@ public class SimulationActor extends Actor
         return getSimulationWorld().worldToWindow(windowCoordinates);
     }
     
+    protected double windowToWorld(double windowCoordinates)
+    {
+        return getSimulationWorld().windowToWorld(windowCoordinates);
+    }
+
     protected Point2D windowToWorld(Point2D windowCoordinates)
     {
         return getSimulationWorld().windowToWorld(windowCoordinates);
