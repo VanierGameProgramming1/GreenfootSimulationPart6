@@ -87,7 +87,7 @@ public class SimulationActor extends Actor
             Graphics2D graphics = (Graphics2D)gBufImg.getGraphics();
             graphics.drawImage(originalImage.getAwtImage(), null, 0, 0);
             graphics.dispose();
-            scaledImage.scale((int)Math.max(imageWidth*zoomRatio, 1.0), (int)Math.max(imageHeight*zoomRatio, 1.0));
+            scaledImage.scale((int)Math.max(imageWidth*zoomRatio, 0.0) + 1, (int) Math.max(imageHeight*zoomRatio, 0.0) + 1);
             setImage(scaledImage);
         }
     }

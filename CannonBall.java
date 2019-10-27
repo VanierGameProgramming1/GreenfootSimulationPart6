@@ -6,46 +6,22 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 * @author (your name) 
 * @version (a version number or a date)
 */
-public class CannonBall extends SimulationActor
+public class CannonBall extends PlatformActor
 {
     protected static final double GRAVITY = -9.8;
-    protected boolean onPlatform;    
     protected Point2D lastPosition;
     
     public CannonBall()
     {
         super(null, new Vector2D(0.0, 0.0), new Vector2D(0.0, GRAVITY));
-        onPlatform = false;
         lastPosition = position;
     }
     
     public void act() 
     {
         super.act();
-        landOnPlatform();
         rollBall();    
     }    
-    
-    public void landOnPlatform()
-    {
-        Platform p = (Platform) getOneObjectAtOffset(0, getRadius() + 1, Platform.class);
-        
-        if (p != null)
-        {
-            // Update position to lie on the platform
-            setLocation(getX(), p.getY() - p.getHeight() / 2 - getRadius());
-            
-            // Update the velocity to stop falling
-            velocity.setY(Math.max(velocity.getY(), 0.0));
-
-            onPlatform = true;
-        }
-        else
-        {
-            onPlatform = false;
-        }
-        
-    }
     
     public void rollBall()
     {

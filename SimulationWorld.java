@@ -46,7 +46,6 @@ public class SimulationWorld extends World
         // Update Viewport Matrix
         toWindowMatrix = Matrix2D.worldToWindow(cameraCenter, cameraWidth, new Vector2D(getWidth(), getHeight()));
         toWorldMatrix = Matrix2D.windowToWorld(cameraCenter, cameraWidth, new Vector2D(getWidth(), getHeight()));
-
     }
     
     public double getTimeStepDuration()
