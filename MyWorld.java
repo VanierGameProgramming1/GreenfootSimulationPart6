@@ -147,8 +147,8 @@ public class MyWorld extends SimulationWorld
             addObject(gp, i, 752);
 
             // Pits
-/*            if (i % 144 == 0)
-                i += 32*4;*/
+            if (i % 144 == 0)
+                i += 32*4;
         }
 
         // Add a few brick platforms
@@ -164,5 +164,10 @@ public class MyWorld extends SimulationWorld
 
         CannonBallAvatar cannonBallAvatar = new CannonBallAvatar();
         addObject(cannonBallAvatar,94,399);
+        Cannon cannon = new Cannon();
+        addObject(cannon,830,368);
+        removeObject(cannon);
+        EnemyCannon enemyCannon = new EnemyCannon();
+        addObject(enemyCannon,770,346);
     }
 }
