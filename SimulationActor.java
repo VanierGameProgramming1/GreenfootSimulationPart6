@@ -2,14 +2,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.awt.*; 
 import java.awt.image.*; 
 
-/**
- * Write a description of class SimulationActor here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class SimulationActor extends Actor
 {
+    protected static final double GRAVITY = -9.8;
+
     protected Point2D position;
     protected Vector2D velocity;
     protected Vector2D acceleration;
@@ -62,7 +58,9 @@ public class SimulationActor extends Actor
         velocity = Vector2D.add(velocity, velocityVariation);
         
         // Set new actor position
-        setLocation(position);
+        Point2D windowLocation = worldToWindow(position);
+        setLocation((int) Math.round(windowLocation.getX()), (int) Math.round(windowLocation.getY()));
+
     }
 
     public void saveOriginalImage()
@@ -110,7 +108,6 @@ public class SimulationActor extends Actor
     public void setPosition(Point2D newValue)
     {
         position = newValue;
-        setLocation(position);
     }
     
     public void setVelocity(Vector2D newValue)
@@ -121,12 +118,6 @@ public class SimulationActor extends Actor
     public void setAcceleration(Vector2D newValue)
     {
         acceleration = newValue;
-    }
-
-    public void setLocation(Point2D worldLocation)
-    {
-        Point2D windowLocation = worldToWindow(worldLocation);
-        setLocation((int) windowLocation.getX(), (int) windowLocation.getY());
     }
     
     protected double worldToWindow(double windowCoordinates)
@@ -159,6 +150,14 @@ public class SimulationActor extends Actor
         return getSimulationWorld().windowToWorld(windowCoordinates);
     }
     
+    public void alignWithVector(Vector2D vWindow)
+    {
+        double angleRad = Math.atan2(vWindow.getY(), vWindow.getX());
+        double angleDeg = Math.toDegrees(angleRad);
+            
+        setRotation((int) angleDeg);
+    }
+
     public int getRadius()
     {
         if (getImage() != null)
@@ -170,6 +169,4 @@ public class SimulationActor extends Actor
             return 0;
         }
     }
-    
-
 }

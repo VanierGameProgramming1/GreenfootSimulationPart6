@@ -1,11 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-/**
- * Write a description of class PlatformActor here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
+
 public class PlatformActor extends SimulationActor
 {
     protected boolean onPlatform;    
@@ -34,13 +29,14 @@ public class PlatformActor extends SimulationActor
         Platform p2 = (Platform) getOneObjectAtOffset( getRadius(), getRadius() + 1, Platform.class);
         Platform p = (p1 == null) ? p2 : p1;
         
-        if (p != null  && velocity.getY() < 0.0)
+        if (p != null  && velocity.getY() <= p.getVelocity().getY())
         {
             // Update position to lie on the platform
-            setLocation(getX(), p.getY() - p.getHeight() / 2 - getRadius());
-            
-            // Update the velocity to stop falling
-            velocity.setY(Math.max(velocity.getY(), 0.0));
+            Point2D newPosition = new Point2D(getX(), p.getY() - p.getHeight() / 2 - getRadius());
+            position = windowToWorld(newPosition);
+
+            // Update the velocity to stop falling / match the platform for moving platform
+            velocity.setY(p.getVelocity().getY());
 
             onPlatform = true;
         }

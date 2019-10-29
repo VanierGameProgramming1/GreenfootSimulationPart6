@@ -19,6 +19,7 @@ public class SimulationWorld extends World
     private long lastFrameTimeMS;
     private double timeStepDuration;
 
+    
     public SimulationWorld(int windowWidth, int windowHeight, Point2D cameraCenter, double cameraWidth)
     {    
         super(windowWidth, windowHeight, 1, false); 
@@ -30,6 +31,7 @@ public class SimulationWorld extends World
         this.cameraWidth = cameraWidth;
         this.toWindowMatrix = Matrix2D.worldToWindow(cameraCenter, cameraWidth, new Vector2D(getWidth(), getHeight()));
         this.toWorldMatrix = Matrix2D.windowToWorld(cameraCenter, cameraWidth, new Vector2D(getWidth(), getHeight()));
+        
     }
     
     public void started()

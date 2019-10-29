@@ -8,7 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 */
 public class CannonBall extends PlatformActor
 {
-    protected static final double GRAVITY = -9.8;
+    protected static final double MOVE_DECELERATION = 2.0;
+    
     protected Point2D lastPosition;
     
     public CannonBall()
@@ -20,8 +21,27 @@ public class CannonBall extends PlatformActor
     public void act() 
     {
         super.act();
+        
+        decelerate();
         rollBall();    
     }    
+    
+    public void decelerate()
+    {
+        if (onPlatform)
+        {
+            double dt = getSimulationWorld().getTimeStepDuration();
+            
+            if (velocity.getX() < 0.0)
+            {
+                velocity.setX(Math.min(velocity.getX() + MOVE_DECELERATION * dt, 0.0));
+            }
+            else if (velocity.getX() > 0.0)
+            {
+                velocity.setX(Math.max(velocity.getX() - MOVE_DECELERATION * dt, 0.0));
+            }
+        }
+    }
     
     public void rollBall()
     {
@@ -35,8 +55,7 @@ public class CannonBall extends PlatformActor
         }
         
         lastPosition = new Point2D(position);
-    }
-    
+    }    
 }
 
 

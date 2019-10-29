@@ -1,15 +1,11 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.*;
 
-/**
- * Write a description of class MyWorld here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
+
 public class MyWorld extends SimulationWorld
 {
-    private final static double CAMERA_SPEED = 5.0; // 1 meter per second
+    private final static double CAMERA_SPEED = 5.0; 
+    private final static double CAMERA_AVATAR_DISTANCE = 5.0; 
     
     public MyWorld()
     {    
@@ -21,9 +17,10 @@ public class MyWorld extends SimulationWorld
     public void act()
     {
         super.act();
+
 //        moveCamera();
         handleCannonBallCollisions();
-//        reflectCannonBallsOnWindow();
+        
     }
 
     public void moveCamera()
@@ -148,6 +145,10 @@ public class MyWorld extends SimulationWorld
         {
             GroundPlatform gp = new GroundPlatform();
             addObject(gp, i, 752);
+
+            // Pits
+/*            if (i % 144 == 0)
+                i += 32*4;*/
         }
 
         // Add a few brick platforms
@@ -156,7 +157,7 @@ public class MyWorld extends SimulationWorld
             // Gap between platforms
             if (i % 336 == 0)
                 i += 320;
-    
+
             BrickPlatform bp = new BrickPlatform();
             addObject(bp, i, 624);
         }
