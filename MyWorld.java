@@ -169,5 +169,9 @@ public class MyWorld extends SimulationWorld
         removeObject(cannon);
         EnemyCannon enemyCannon = new EnemyCannon();
         addObject(enemyCannon,770,346);
+        MovingBrickPlatform movingBrickPlatform = new MovingBrickPlatform(2, 6);
+        addObject(movingBrickPlatform,453,622);
+        MovingBrickPlatform movingBrickPlatform2 = new MovingBrickPlatform(2, 6);
+        addObject(movingBrickPlatform2,485,622);
     }
 }
